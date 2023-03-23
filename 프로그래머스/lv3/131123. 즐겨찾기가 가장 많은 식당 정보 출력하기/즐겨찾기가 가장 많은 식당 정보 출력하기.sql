@@ -1,0 +1,12 @@
+-- 코드를 입력하세요
+#  음식 종류별로 즐겨찾기가 가장 많은 식당의
+#  음식 종류, ID, 식당 이름, 즐겨찾기 수를 조회하는 SQL문 작성 
+SELECT A.FOOD_TYPE as FOOD_TYPE, A.REST_ID as REST_ID, A.REST_NAME as REST_NAME, A.FAVORITES as FAVORITES
+FROM REST_INFO AS A
+WHERE A.FAVORITES = 
+(   
+    SELECT MAX(B.FAVORITES)
+    FROM REST_INFO AS B
+    WHERE A.FOOD_TYPE = B.FOOD_TYPE
+)
+ORDER BY A.FOOD_TYPE desc
